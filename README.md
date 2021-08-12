@@ -1,7 +1,9 @@
 # Image Processing API
+
 An Image Processing API that resize and saves the images to local file system of the server.
 
 ## What I learned:
+
 * ExpressJS
 * TypeScript
 * Working with NPM
