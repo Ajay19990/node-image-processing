@@ -1,7 +1,6 @@
 import express from "express";
-import sharp from "sharp";
-import { promises as fsPromises } from "fs";
 import NodeCache from "node-cache";
+import convertImage from "../../utils/convertImage";
 
 const nodeCache = new NodeCache();
 const routes = express.Router();
@@ -17,24 +16,23 @@ const processImage = routes.use("/", async (req, res) => {
   const imageName = req.query.imageName;
   const cacheKey = `${imageName}#${width}#${height}`;
 
-  try {
-    await fsPromises.readFile(sourceFilePath);
-  } catch (e) {
-    return res.send("Unable to find an image with this image name");
-  }
-
   const cachedResultFilePath = nodeCache.get(cacheKey);
   if (cachedResultFilePath != undefined) {
     return res.sendFile(cachedResultFilePath as string);
   }
 
   try {
-    await sharp(sourceFilePath).resize(width, height).toFile(resultFilePath);
+    await convertImage(sourceFilePath, width, height, resultFilePath);
     nodeCache.set(cacheKey, resultFilePath);
     return res.sendFile(resultFilePath);
   } catch (e) {
-    console.log(e);
-    return res.send("Failed to process the image");
+    if (e.message == "Image Not Found") {
+      res.status(400);
+      return res.send("Image not found");
+    } else {
+      res.status(400);
+      return res.send("Failed to process the image");
+    }
   }
 });
 
