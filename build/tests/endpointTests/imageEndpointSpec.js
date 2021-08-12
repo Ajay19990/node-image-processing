@@ -20,7 +20,7 @@ describe("Endpoint testing", () => {
         const response = yield request.get("/api/convert?imageName=Ajay&width=500&height=100");
         expect(response.statusCode).toBe(400);
     }));
-    it("Returns 200 for invalid request", () => __awaiter(void 0, void 0, void 0, function* () {
+    it("Returns 200 for valid request", () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get("/api/convert?imageName=santamonica&width=500&height=100");
         expect(response.statusCode).toBe(200);
     }));

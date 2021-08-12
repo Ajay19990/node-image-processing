@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const convertImage_1 = __importDefault(require("../../utils/convertImage"));
 describe("Testing image conversion", () => {
-    it("expect convertImage(santamonica) to return a string", () => __awaiter(void 0, void 0, void 0, function* () {
+    it("expect convertImage(santamonica) to return a saved file path", () => __awaiter(void 0, void 0, void 0, function* () {
         const sourceFilePath = process.cwd() + `/assets/full/santamonica.jpg`;
         const resultFilePath = process.cwd() + `/assets/thumb/santamonicaThumb.jpg`;
         const result = yield convertImage_1.default(sourceFilePath, 200, 200, resultFilePath);
