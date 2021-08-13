@@ -1,9 +1,9 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import validateParams from "../utils/validateRequest";
 import processImage from "./api/processImage";
 
 const routes = Router();
-routes.get("/", (req, res) => {
+routes.get("/", (req: Request, res: Response) => {
   res.send("Main API page");
 });
 
