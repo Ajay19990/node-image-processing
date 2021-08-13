@@ -1,11 +1,11 @@
-import express from "express";
+import { Router, Request, Response } from "express";
 import NodeCache from "node-cache";
 import convertImage from "../../utils/convertImage";
 
 const nodeCache = new NodeCache();
-const routes = express.Router();
+const routes = Router();
 
-const processImage = routes.use("/", async (req, res) => {
+const processImage = routes.use("/", async (req: Request, res: Response) => {
   const sourceFilePath =
     process.cwd() + `/assets/full/${req.query.imageName}.jpg`;
   const resultFilePath =

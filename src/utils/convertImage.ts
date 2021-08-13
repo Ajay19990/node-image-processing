@@ -6,7 +6,7 @@ const convertImage = async (
   width: number,
   height: number,
   resultFilePath: string
-) => {
+): Promise<string> => {
   try {
     await fsPromises.readFile(sourceFilePath);
   } catch (e) {

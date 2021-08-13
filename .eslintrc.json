@@ -18,6 +18,10 @@
         "prettier"
     ],
     "rules": {
+        "comma-dangle": ["error", "never"],
+        "indent": "off",
+        "object-curly-spacing": ["error", "always"],
+        "new-cap": 0,
         "prettier/prettier": "error",
         "quotes": [2, "double", { "avoidEscape": true }]
     }
